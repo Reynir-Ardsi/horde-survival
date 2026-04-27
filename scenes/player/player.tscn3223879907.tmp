@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://beqctx6w7jyi4" path="res://assets/PostApocalypse_AssetPack_v1.1.2/Character/Main/Run/Character_side-left_run_no-hands-Sheet6.png" id="4_qek5x"]
 [ext_resource type="Texture2D" uid="uid://cee5caxdvs1l4" path="res://assets/PostApocalypse_AssetPack_v1.1.2/Character/Main/Run/Character_side_run_no-hands-Sheet6.png" id="5_5gtgg"]
 [ext_resource type="Texture2D" uid="uid://dladsv2icug00" path="res://assets/PostApocalypse_AssetPack_v1.1.2/Character/Main/Run/Character_up_run_no-hands-Sheet6.png" id="6_h17s1"]
-[ext_resource type="Texture2D" uid="uid://5f3w37ktintj" path="res://assets/PostApocalypse_AssetPack_v1.1.2/Character/Main/Idle/Hands_down_idle-Sheet6.png" id="7_0owmy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_je7p5"]
 atlas = ExtResource("2_75vfm")
@@ -246,78 +245,10 @@ animations = [{
 "speed": 30.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0owmy"]
-radius = 22.0
-height = 78.0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qek5x"]
-atlas = ExtResource("7_0owmy")
-region = Rect2(0, 0, 13, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5gtgg"]
-atlas = ExtResource("7_0owmy")
-region = Rect2(13, 0, 13, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_h17s1"]
-atlas = ExtResource("7_0owmy")
-region = Rect2(26, 0, 13, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vo27k"]
-atlas = ExtResource("7_0owmy")
-region = Rect2(39, 0, 13, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_genst"]
-atlas = ExtResource("7_0owmy")
-region = Rect2(52, 0, 13, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_niom3"]
-atlas = ExtResource("7_0owmy")
-region = Rect2(65, 0, 13, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_ttakn"]
-animations = [{
-"frames": [{
-"duration": 5.0,
-"texture": SubResource("AtlasTexture_qek5x")
-}, {
-"duration": 5.0,
-"texture": SubResource("AtlasTexture_5gtgg")
-}, {
-"duration": 5.0,
-"texture": SubResource("AtlasTexture_h17s1")
-}, {
-"duration": 5.0,
-"texture": SubResource("AtlasTexture_vo27k")
-}, {
-"duration": 5.0,
-"texture": SubResource("AtlasTexture_genst")
-}, {
-"duration": 5.0,
-"texture": SubResource("AtlasTexture_niom3")
-}],
-"loop": true,
-"name": &"fists-idle",
-"speed": 30.0
-}]
-
 [node name="Player" type="CharacterBody2D" unique_id=301303664]
 script = ExtResource("1_8afob")
 
-[node name="Body" type="AnimatedSprite2D" parent="." unique_id=586986476]
-scale = Vector2(5, 5)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=586986476]
 sprite_frames = SubResource("SpriteFrames_vo27k")
-animation = &"idle"
-autoplay = "idle"
-frame_progress = 0.6857538
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1842603654]
-shape = SubResource("CapsuleShape2D_0owmy")
-
-[node name="Weapon" type="Node2D" parent="." unique_id=1399188562]
-
-[node name="WeaponSprite" type="AnimatedSprite2D" parent="Weapon" unique_id=756754698]
-scale = Vector2(5, 5)
-sprite_frames = SubResource("SpriteFrames_ttakn")
-animation = &"fists-idle"
-autoplay = "fists-idle"
-frame_progress = 0.43375018
+animation = &"run-right"
+frame_progress = 0.16164714
