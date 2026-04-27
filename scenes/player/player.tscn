@@ -246,6 +246,10 @@ animations = [{
 "speed": 30.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0owmy"]
+radius = 22.0
+height = 78.0
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_qek5x"]
 atlas = ExtResource("7_0owmy")
 region = Rect2(0, 0, 13, 16)
@@ -305,6 +309,9 @@ sprite_frames = SubResource("SpriteFrames_vo27k")
 animation = &"idle"
 autoplay = "idle"
 frame_progress = 0.6857538
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1842603654]
+shape = SubResource("CapsuleShape2D_0owmy")
 
 [node name="Weapon" type="Node2D" parent="." unique_id=1399188562]
 

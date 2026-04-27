@@ -11,6 +11,9 @@ extends CharacterBody2D
 var input_dir = Vector2.ZERO
 var base_offset := Vector2(0, 0)
 
+func _ready():
+	add_to_group("player")
+
 func _physics_process(delta):
 	velocity = velocity.move_toward(input_dir * speed, acceleration * delta)
 	velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
