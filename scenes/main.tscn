@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://b3vrcoln0cv14" path="res://assets/PostApocalypse_AssetPack_v1.1.2/Tiles/Background_Dark-Green_TileSet.png" id="1_o5qli"]
 [ext_resource type="PackedScene" uid="uid://cuccn1nvwq263" path="res://scenes/brute.tscn" id="2_sugp2"]
-[ext_resource type="PackedScene" uid="uid://diiobikhudedr" path="res://scenes/player.tscn" id="3_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://diiobikhudedr" path="res://scenes/player/player.tscn" id="3_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://c4hchvnhdg5ii" path="res://scenes/normal.tscn" id="5_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://cxlw3rg3mv7pf" path="res://scenes/special.tscn" id="6_tipki"]
 
