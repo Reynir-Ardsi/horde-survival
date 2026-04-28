@@ -1,8 +1,13 @@
 extends Node2D
 
+
+@export var specialZ: PackedScene = preload("res://scenes/special.tscn")
+@export var NormalZ: PackedScene = preload("res://scenes/normal.tscn")
+@export var BruteZ: PackedScene = preload("res://scenes/brute.tscn")
+
 @export var enemy_scene: PackedScene = preload("res://scenes/enemy.tscn")
 @export var spawn_interval: float = 1.0
-@export var max_enemies: int = 30
+@export var max_enemies: int = 50
 
 @onready var player: CharacterBody2D = $Player
 
@@ -18,14 +23,15 @@ func _on_spawn_timer_timeout() -> void:
 		spawn_enemy()
 
 func spawn_enemy() -> void:
+	
+	randi_range(1,3)
+	
+	
 	var enemy = enemy_scene.instantiate()
 	
 	# Calculate spawn position outside the screen relative to player
 	var spawn_pos = get_random_spawn_position()
 	enemy.global_position = spawn_pos
-	
-	# Scale it up a bit as seen in main.tscn
-	enemy.scale = Vector2(4, 4)
 	
 	add_child(enemy)
 

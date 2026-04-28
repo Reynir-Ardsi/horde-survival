@@ -301,6 +301,7 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D" unique_id=301303664]
+scale = Vector2(0.2, 0.2)
 script = ExtResource("1_8afob")
 
 [node name="Body" type="AnimatedSprite2D" parent="." unique_id=586986476]
@@ -321,3 +322,6 @@ sprite_frames = SubResource("SpriteFrames_ttakn")
 animation = &"fists-idle"
 autoplay = "fists-idle"
 frame_progress = 0.43375018
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=272258137]
+zoom = Vector2(3, 3)
