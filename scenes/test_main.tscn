@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://bds76embb8fbe" path="res://scripts/main.gd" id="1_7yu4j"]
 [ext_resource type="Texture2D" uid="uid://b3vrcoln0cv14" path="res://assets/PostApocalypse_AssetPack_v1.1.2/Tiles/Background_Dark-Green_TileSet.png" id="1_o5qli"]
-[ext_resource type="PackedScene" uid="uid://di54likrbnek2" path="res://scenes/enemy.tscn" id="3_3hvsj"]
 [ext_resource type="PackedScene" uid="uid://diiobikhudedr" path="res://scenes/player/player.tscn" id="3_jyhfs"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0wfyh"]
@@ -360,6 +359,3 @@ layer_0/tile_data = PackedInt32Array(13, 327680, 0, 65549, 262144, 1, 131085, 32
 
 [node name="Player" parent="." unique_id=2099906613 instance=ExtResource("3_jyhfs")]
 position = Vector2(504, 227)
-
-[node name="Enemy" parent="." unique_id=1848704783 instance=ExtResource("3_3hvsj")]
-position = Vector2(458, 226)
