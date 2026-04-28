@@ -17,13 +17,8 @@ config/icon="res://icon.svg"
 
 [display]
 
-<<<<<<< Updated upstream
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
-=======
-mouse_cursor/custom_image="uid://cxfmleh2tnnij"
-mouse_cursor/custom_image_hotspot=Vector2(540, 540)
->>>>>>> Stashed changes
 
 [input]
 
