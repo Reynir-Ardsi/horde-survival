@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://01ccmwqc3e38"]
+
+[ext_resource type="Script" uid="uid://dg55qv30rmqwu" path="res://scripts/gun scripts/shtgn1.gd" id="1_bsuws"]
+[ext_resource type="Texture2D" uid="uid://tccb8n1o8djh" path="res://assets/Ranitayas Guns Pack (16+ pixelart guns)/Shotguns/2Shotgun02.png" id="1_s5okf"]
+
+[node name="SHTGN1" type="Node2D" unique_id=1557598308]
+z_index = 10
+scale = Vector2(2, 2)
+script = ExtResource("1_bsuws")
+fire_rate = 1.5
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=238719735]
+position = Vector2(14, 0)
+texture = ExtResource("1_s5okf")
+
+[node name="Muzzle" type="Marker2D" parent="." unique_id=46788796]
+position = Vector2(32, -3)

@@ -4,7 +4,9 @@ extends CharacterBody2D
 @export var acceleration := 1200
 @export var friction := 800
 
-@export var starter_weapon: PackedScene = preload("res://scenes/gun scenes/pistol.tscn")
+@export var ar1: PackedScene = preload("res://scenes/gun scenes/ar1.tscn")
+@export var shtgn1: PackedScene = preload("res://scenes/gun scenes/shtgn1.tscn")
+@export var pistol: PackedScene = preload("res://scenes/gun scenes/pistol.tscn")
 
 @onready var sprite: AnimatedSprite2D = $Body
 @onready var weapon_socket: Marker2D = $WeaponSocket
@@ -12,11 +14,11 @@ extends CharacterBody2D
 var current_weapon: Node2D
 var input_dir = Vector2.ZERO
 # Track the last direction the player moved (defaulting to right)
-var last_direction = "right" 
+var last_direction = "right"
 
 func _ready():
 	add_to_group("player")
-	equip_weapon(starter_weapon)
+	equip_weapon(shtgn1)
 
 func _physics_process(delta):
 	handle_movement()
@@ -28,10 +30,11 @@ func handle_movement():
 
 	input_dir = input_dir.normalized()
 
-	# Update the last_direction based on horizontal movement
-	if input_dir.x > 0:
+	# Update the last_direction based on mouse position
+	var mouse_pos = get_global_mouse_position()
+	if mouse_pos.x > global_position.x:
 		last_direction = "right"
-	elif input_dir.x < 0:
+	else:
 		last_direction = "left"
 
 	velocity = input_dir * speed
@@ -45,19 +48,9 @@ func handle_aim():
 		return
 
 	var mouse_pos = get_global_mouse_position()
-	var dir = mouse_pos - global_position
-
-	# Rotate entire equipped weapon
-	current_weapon.rotation = dir.angle()
-
-	# Optional sprite flip if weapon has WeaponSprite
-	if current_weapon.has_node("WeaponSprite"):
-		var weapon_sprite = current_weapon.get_node("WeaponSprite")
-
-		if dir.x < 0:
-			weapon_sprite.flip_v = true
-		else:
-			weapon_sprite.flip_v = false
+	
+	if current_weapon.has_method("aim"):
+		current_weapon.aim(mouse_pos)
 
 
 func _input(event):

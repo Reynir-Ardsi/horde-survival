@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://n2h3ri5qh36k"]
+
+[ext_resource type="Script" uid="uid://be3w0b7mj1nnk" path="res://scripts/gun scripts/ar1.gd" id="1_6fe2y"]
+[ext_resource type="Texture2D" uid="uid://dfgb8nhj0nhsy" path="res://assets/Ranitayas Guns Pack (16+ pixelart guns)/AssaultRifles/7Assoultrifle07.png" id="2_6fe2y"]
+
+[node name="AR1" type="CharacterBody2D" unique_id=1609019262]
+z_index = 10
+scale = Vector2(5, 5)
+script = ExtResource("1_6fe2y")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=997314471]
+position = Vector2(3.6, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_6fe2y")
+
+[node name="Muzzle" type="Marker2D" parent="." unique_id=999621077]
+position = Vector2(14.599999, -0.8)
+gizmo_extents = 5.0
