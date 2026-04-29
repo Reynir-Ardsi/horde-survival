@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-enum State { CHASE, IDLE }
+enum State { CHASE, ATTACK }
 
 @export var speed := 50.0
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -18,9 +18,10 @@ func _physics_process(_delta: float) -> void:
 	match current_state:
 		State.CHASE:
 			handle_chase()
-		State.IDLE:
+		State.ATTACK:
 			velocity = Vector2.ZERO
 			move_and_slide()
+	#move_and_collide()
 
 func handle_chase() -> void:
 	if not player:

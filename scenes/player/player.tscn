@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cee5caxdvs1l4" path="res://assets/PostApocalypse_AssetPack_v1.1.2/Character/Main/Run/Character_side_run_no-hands-Sheet6.png" id="5_5gtgg"]
 [ext_resource type="Texture2D" uid="uid://dladsv2icug00" path="res://assets/PostApocalypse_AssetPack_v1.1.2/Character/Main/Run/Character_up_run_no-hands-Sheet6.png" id="6_h17s1"]
 [ext_resource type="Texture2D" uid="uid://5f3w37ktintj" path="res://assets/PostApocalypse_AssetPack_v1.1.2/Character/Main/Idle/Hands_down_idle-Sheet6.png" id="7_0owmy"]
+[ext_resource type="Script" uid="uid://bax3meyvt47wa" path="res://scripts/camera.gd" id="8_qek5x"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_je7p5"]
 atlas = ExtResource("2_75vfm")
@@ -325,3 +326,4 @@ frame_progress = 0.43375018
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=272258137]
 zoom = Vector2(3, 3)
+script = ExtResource("8_qek5x")

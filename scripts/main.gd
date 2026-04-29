@@ -1,7 +1,7 @@
 extends Node2D
 
 
-@export var specialZ: PackedScene = preload("res://scenes/special.tscn")
+@export var SpecialZ: PackedScene = preload("res://scenes/special.tscn")
 @export var NormalZ: PackedScene = preload("res://scenes/normal.tscn")
 @export var BruteZ: PackedScene = preload("res://scenes/brute.tscn")
 

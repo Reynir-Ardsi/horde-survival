@@ -272,6 +272,14 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yg6x6"]
+radius = 8.0
+height = 22.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m12hg"]
+radius = 4.0
+height = 12.0
+
 [node name="Normal" type="CharacterBody2D" unique_id=1257532220]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2141158302]
@@ -281,5 +289,8 @@ animation = &"walk"
 [node name="Area2D" type="Area2D" parent="." unique_id=1598886106]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=34680542]
+shape = SubResource("CapsuleShape2D_yg6x6")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=859632098]
+shape = SubResource("CapsuleShape2D_m12hg")
+debug_color = Color(1, 1, 1, 0.41960785)

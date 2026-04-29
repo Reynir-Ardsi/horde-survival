@@ -254,8 +254,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7v6cf"]
-radius = 6.0
-height = 22.0
+radius = 4.0
+height = 18.0
 
 [node name="Enemy" type="CharacterBody2D" unique_id=1848704783]
 script = ExtResource("1_c4w8v")

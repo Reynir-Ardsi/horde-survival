@@ -266,9 +266,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_h7e4g")
 }],
-"loop": true,
+"loop": false,
 "name": &"die1",
-"speed": 6.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -292,9 +292,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7d7mq")
 }],
-"loop": true,
+"loop": false,
 "name": &"die2",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -359,8 +359,8 @@ animations = [{
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2141158302]
 sprite_frames = SubResource("SpriteFrames_np67r")
-animation = &"walk1"
-frame_progress = 0.22161052
+animation = &"attack2"
+frame_progress = 0.86444896
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1598886106]
 
