@@ -6,7 +6,7 @@ extends CharacterBody2D
 
 @export var ar1: PackedScene = preload("res://scenes/gun scenes/ar1.tscn")
 @export var shtgn1: PackedScene = preload("res://scenes/gun scenes/shtgn1.tscn")
-@export var pistol: PackedScene = preload("res://scenes/gun scenes/pistol.tscn")
+@export var pstl: PackedScene = preload("res://scenes/gun scenes/pistol.tscn")
 
 @onready var sprite: AnimatedSprite2D = $Body
 @onready var weapon_socket: Marker2D = $WeaponSocket
@@ -18,7 +18,7 @@ var last_direction = "right"
 
 func _ready():
 	add_to_group("player")
-	equip_weapon(shtgn1)
+	equip_weapon(ar1)
 
 func _physics_process(delta):
 	handle_movement()

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Horde Survival"
-run/main_scene="uid://diiobikhudedr"
+run/main_scene="uid://b5mgy4ipvodmp"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -22,6 +22,11 @@ window/stretch/aspect="expand"
 mouse_cursor/custom_image="uid://cyr6yptds6bo7"
 mouse_cursor/custom_image_hotspot=Vector2(65, 65)
 <<<<<<<Updatedupstreamwindow/stretch/mode="canvas_items"
+
+[global_group]
+
+player=""
+bullet=""
 
 [input]
 

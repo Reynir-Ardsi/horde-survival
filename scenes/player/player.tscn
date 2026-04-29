@@ -202,9 +202,10 @@ animations = [{
 radius = 22.0
 height = 78.0
 
-[node name="Player" type="CharacterBody2D" unique_id=301303664]
+[node name="Player" type="CharacterBody2D" unique_id=301303664 groups=["player"]]
 scale = Vector2(0.2, 0.2)
 script = ExtResource("1_8afob")
+metadata/_edit_group_ = true
 
 [node name="WeaponSocket" type="Marker2D" parent="." unique_id=805051225]
 position = Vector2(0, 20)

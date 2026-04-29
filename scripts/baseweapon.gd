@@ -26,7 +26,7 @@ func aim(target_pos: Vector2):
 func fire():
 	pass
 
-func spawn_bullet():
+func spawn_bullet(damage: float = 0.0):
 	if bullet_scene == null:
 		return
 
@@ -40,4 +40,4 @@ func spawn_bullet():
 
 	var dir = Vector2.RIGHT.rotated(rotation)
 	if bullet.has_method("initialize"):
-		bullet.initialize(dir)
+		bullet.initialize(dir, damage)

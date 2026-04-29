@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://cuccn1nvwq263"]
 
+[ext_resource type="Script" uid="uid://mlfun4qfhuy" path="res://scripts/brute.gd" id="1_brute"]
 [ext_resource type="Texture2D" uid="uid://dl4f5377lx5j0" path="res://assets/PostApocalypse_AssetPack_v1.1.2/Enemies/Zombie_Big/Zombie_Big_Side_First-Attack-Sheet8.png" id="1_jqsto"]
 [ext_resource type="Texture2D" uid="uid://ctbq4oojjy7ud" path="res://assets/PostApocalypse_AssetPack_v1.1.2/Enemies/Zombie_Big/Zombie_Big_Side_Second-Attack-Sheet15.png" id="2_opy8e"]
 [ext_resource type="Texture2D" uid="uid://dshba0721iwny" path="res://assets/PostApocalypse_AssetPack_v1.1.2/Enemies/Zombie_Big/Zombie_Big_Side_First-Death-Sheet7.png" id="3_jr8ks"]
@@ -210,7 +211,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_1gj50")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack1",
 "speed": 8.0
 }, {
@@ -260,7 +261,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_kokxn")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack2",
 "speed": 10.0
 }, {
@@ -286,7 +287,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_svjs3")
 }],
-"loop": true,
+"loop": false,
 "name": &"die1",
 "speed": 6.0
 }, {
@@ -315,7 +316,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qkxqj")
 }],
-"loop": true,
+"loop": false,
 "name": &"die2",
 "speed": 7.0
 }, {
@@ -350,24 +351,39 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jqsto"]
-radius = 11.0
-height = 32.0
+radius = 11.538463
+height = 34.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_opy8e"]
+radius = 15.384617
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_opy8e"]
 radius = 6.0
 height = 22.0
 
 [node name="Brute" type="CharacterBody2D" unique_id=1257532220]
+scale = Vector2(1.3, 1.3)
+script = ExtResource("1_brute")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2141158302]
 sprite_frames = SubResource("SpriteFrames_np67r")
-animation = &"walk"
+animation = &"die2"
 
-[node name="Area2D" type="Area2D" parent="." unique_id=1598886106]
+[node name="AttackZone" type="Area2D" parent="." unique_id=1598886106]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=34680542]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackZone" unique_id=34680542]
 shape = SubResource("CapsuleShape2D_jqsto")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=859632098]
+[node name="Hitbox" type="Area2D" parent="." unique_id=1962015356]
+
+[node name="HitShape" type="CollisionShape2D" parent="Hitbox" unique_id=1115220307]
+shape = SubResource("CircleShape2D_opy8e")
+debug_color = Color(0.96239287, 1.92523e-07, 0.5076355, 0.41960785)
+
+[node name="CollisionShape" type="CollisionShape2D" parent="." unique_id=859632098]
 shape = SubResource("CapsuleShape2D_opy8e")
 debug_color = Color(1, 1, 1, 0.41960785)
+
+[connection signal="body_entered" from="AttackZone" to="." method="_on_attack_zone_body_entered"]
+[connection signal="body_exited" from="AttackZone" to="." method="_on_attack_zone_body_exited"]
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
