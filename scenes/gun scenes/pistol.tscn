@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dyqq4bcjm8xg"]
+
+[ext_resource type="Script" uid="uid://q34s5klypuk2" path="res://scripts/gun scripts/pistol.gd" id="1_opjnr"]
+[ext_resource type="Texture2D" uid="uid://baik32t7pa6dt" path="res://assets/Ranitayas Guns Pack (16+ pixelart guns)/Pistols/3Pistol03.png" id="7_2m3iv"]
+
+[node name="Pistol" type="CharacterBody2D" unique_id=1609019262]
+z_index = 10
+scale = Vector2(5, 5)
+script = ExtResource("1_opjnr")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=997314471]
+position = Vector2(3.6, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_2m3iv")
+
+[node name="Muzzle" type="Marker2D" parent="." unique_id=999621077]
+position = Vector2(7.6, -1)
+gizmo_extents = 5.0

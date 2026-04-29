@@ -1,7 +1,7 @@
 extends Camera2D
 
-@export var max_lookahead := 150.0
-@export var smoothing := 10.0
+@export var max_lookahead := 80.0
+@export var smoothing := 5.0
 
 func _process(delta):
 	var mouse_world = get_global_mouse_position()

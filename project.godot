@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 mouse_cursor/custom_image="uid://cyr6yptds6bo7"
+mouse_cursor/custom_image_hotspot=Vector2(65, 65)
 <<<<<<<Updatedupstreamwindow/stretch/mode="canvas_items"
 
 [input]
