@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bfjy1klklc3xo"]
+
+[ext_resource type="Script" uid="uid://xn3eqmk3mv1p" path="res://scripts/gun scripts/snpr2.gd" id="1_3gnll"]
+[ext_resource type="Texture2D" uid="uid://cx8tjwjtkllfx" path="res://assets/Ranitayas Guns Pack (16+ pixelart guns)/SniperRifles/6SniperRifle06.png" id="2_3gnll"]
+
+[node name="SNPR2" type="CharacterBody2D" unique_id=1609019262]
+z_index = 10
+scale = Vector2(5, 5)
+script = ExtResource("1_3gnll")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=997314471]
+position = Vector2(5.2, -1.2)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_3gnll")
+
+[node name="Muzzle" type="Marker2D" parent="." unique_id=999621077]
+position = Vector2(14.4, -1.4)
+gizmo_extents = 0.0

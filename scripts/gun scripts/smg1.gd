@@ -1,17 +1,17 @@
 extends BaseWeapon
 
 func _init():
-	fire_rate = 0.5
-	damage = 22.0
+	fire_rate = 0.1
+	damage = 10.0
 	magazine_size = 30
 	current_ammo = 30
-	reload_speed = 2.0
-	bullet_speed = 750.0
+	reload_speed = 1.2
+	bullet_speed = 550.0
 	penetration = 1
-	spread = 0.05
+	spread = 0.15
 	projectiles = 1
-	burst_count = 3
-	burst_delay = 0.08
+	burst_count = 1
+	burst_delay = 0
 	crit_rate = 0.1
 	crit_damage = 1.5
 	is_automatic = true

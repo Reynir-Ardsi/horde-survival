@@ -9,10 +9,10 @@ scale = Vector2(5, 5)
 script = ExtResource("1_6fe2y")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=997314471]
-position = Vector2(3.6, 0)
+position = Vector2(7.55, -0.050000012)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_6fe2y")
 
 [node name="Muzzle" type="Marker2D" parent="." unique_id=999621077]
-position = Vector2(14.599999, -0.8)
-gizmo_extents = 5.0
+position = Vector2(19.550001, -0.85)
+gizmo_extents = 0.0

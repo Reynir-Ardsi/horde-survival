@@ -208,7 +208,7 @@ script = ExtResource("1_8afob")
 metadata/_edit_group_ = true
 
 [node name="WeaponSocket" type="Marker2D" parent="." unique_id=805051225]
-position = Vector2(0, 20)
+position = Vector2(0, 15)
 scale = Vector2(0.99999994, 0.99999994)
 
 [node name="Body" type="AnimatedSprite2D" parent="." unique_id=586986476]
@@ -218,10 +218,8 @@ animation = &"idle-left"
 autoplay = "idle-left"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1842603654]
-visible = false
 shape = SubResource("CapsuleShape2D_0owmy")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=272258137]
-visible = false
 zoom = Vector2(3, 3)
 script = ExtResource("8_qek5x")

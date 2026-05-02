@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cumj51d5ypijn"]
+
+[ext_resource type="Script" uid="uid://cudwnbrpvcsmo" path="res://scripts/gun scripts/lmg2.gd" id="1_xg5i7"]
+[ext_resource type="Texture2D" uid="uid://y6y6ncwcrhfv" path="res://assets/Ranitayas Guns Pack (16+ pixelart guns)/MachineGuns/6Machinegun06.png" id="2_xg5i7"]
+
+[node name="LMG2" type="CharacterBody2D" unique_id=1609019262]
+z_index = 10
+scale = Vector2(5, 5)
+script = ExtResource("1_xg5i7")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=997314471]
+position = Vector2(4.4, -1.2)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_xg5i7")
+
+[node name="Muzzle" type="Marker2D" parent="." unique_id=999621077]
+position = Vector2(15.4, -2.6)
+gizmo_extents = 0.0
