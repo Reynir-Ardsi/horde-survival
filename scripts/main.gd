@@ -5,8 +5,8 @@ extends Node2D
 @export var NormalZ: PackedScene = preload("res://scenes/normal.tscn")
 @export var BruteZ: PackedScene = preload("res://scenes/brute.tscn")
 
-@export var spawn_interval: float = 1.0
-@export var max_enemies: int = 100
+@export var spawn_interval: float = 0.5
+@export var max_enemies: int = 500
 
 @onready var player: CharacterBody2D = $Player
 

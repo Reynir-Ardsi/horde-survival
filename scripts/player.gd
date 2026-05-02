@@ -1,12 +1,20 @@
 extends CharacterBody2D
 
-@export var speed := 100
+@export var speed := 80
 @export var acceleration := 1200
 @export var friction := 800
 
 @export var ar1: PackedScene = preload("res://scenes/gun scenes/ar1.tscn")
+@export var ar2: PackedScene = preload("res://scenes/gun scenes/ar2.tscn")
+@export var smg1: PackedScene = preload("res://scenes/gun scenes/smg1.tscn")
+@export var smg2: PackedScene = preload("res://scenes/gun scenes/smg2.tscn")
+@export var lmg1: PackedScene = preload("res://scenes/gun scenes/lmg1.tscn")
+@export var lmg2: PackedScene = preload("res://scenes/gun scenes/lmg2.tscn")
 @export var shtgn1: PackedScene = preload("res://scenes/gun scenes/shtgn1.tscn")
-@export var pstl: PackedScene = preload("res://scenes/gun scenes/pistol.tscn")
+@export var shtgn2: PackedScene = preload("res://scenes/gun scenes/shtgn2.tscn")
+@export var snpr1: PackedScene = preload("res://scenes/gun scenes/snpr1.tscn")
+@export var snpr2: PackedScene = preload("res://scenes/gun scenes/snpr2.tscn")
+@export var pstl: PackedScene = preload("res://scenes/gun scenes/pstl.tscn")
 
 @onready var sprite: AnimatedSprite2D = $Body
 @onready var weapon_socket: Marker2D = $WeaponSocket
@@ -18,11 +26,27 @@ var last_direction = "right"
 
 func _ready():
 	add_to_group("player")
-	equip_weapon(ar1)
+	equip_weapon(ar2)
 
 func _physics_process(delta):
 	handle_movement()
 	handle_aim()
+	handle_shooting()
+
+func handle_shooting():
+	if current_weapon == null:
+		return
+		
+	var is_auto = false
+	if "is_automatic" in current_weapon:
+		is_auto = current_weapon.is_automatic
+		
+	if is_auto:
+		if Input.is_action_pressed("shoot"):
+			current_weapon.fire()
+	else:
+		if Input.is_action_just_pressed("shoot"):
+			current_weapon.fire()
 
 func handle_movement():
 	input_dir.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")

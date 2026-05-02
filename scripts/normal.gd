@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 enum State { CHASE, ATTACK, DEAD }
-var speed := 50.0
+var speed := 30.0
 var current_state = State.CHASE
 var player: Node2D = null
 
@@ -101,4 +101,7 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 		return
 	if area.is_in_group("bullet"):
 		take_damage(area.damage)
-		area.queue_free()
+		if area.has_method("handle_hit"):
+			area.handle_hit()
+		else:
+			area.queue_free()
