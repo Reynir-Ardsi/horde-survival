@@ -7,6 +7,11 @@ var player: Node2D = null
 
 var hp := 75.0
 
+var xp_reward: float = 15.0
+var damage_amount: float = 5.0
+var attack_cooldown: float = 0.8
+var attack_timer: float = 0.0
+
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 func _ready() -> void:
@@ -30,7 +35,7 @@ func _physics_process(_delta: float) -> void:
 		State.CHASE:
 			handle_chase()
 		State.ATTACK:
-			handle_attack()
+			handle_attack(_delta)
 
 func handle_chase() -> void:
 	var direction = (player.global_position - global_position).normalized()
@@ -39,14 +44,15 @@ func handle_chase() -> void:
 	update_animation(direction)
 	move_and_slide()
 
-func handle_attack() -> void:
-	velocity = Vector2.ZERO
-	if sprite.sprite_frames.has_animation("attack"):
-		sprite.play("attack")
-	elif sprite.sprite_frames.has_animation("attack1"):
-		sprite.play("attack1")
-	elif sprite.sprite_frames.has_animation("attack2"):
-		sprite.play("attack2")
+func handle_attack(delta: float) -> void:
+	sprite.play("attack1")
+	
+	attack_timer -= delta
+	if attack_timer <= 0:
+		if player and player.has_method("take_damage"):
+			player.take_damage(damage_amount)
+		attack_timer = attack_cooldown
+		
 	move_and_slide()
 
 func update_animation(dir: Vector2) -> void:
@@ -73,6 +79,10 @@ func take_damage(amount: float) -> void:
 func die() -> void:
 	if current_state == State.DEAD:
 		return
+		
+	if player and player.has_method("gain_xp"):
+		player.gain_xp(xp_reward)
+		
 	current_state = State.DEAD
 	
 	if has_node("Hitbox/CollisionShape2D"):
@@ -99,6 +109,7 @@ func _on_attack_zone_body_entered(body: Node2D) -> void:
 		return
 	if body.is_in_group("player"):
 		current_state = State.ATTACK
+		attack_timer = 0.0 # Attack immediately upon entering range
 
 func _on_attack_zone_body_exited(body: Node2D) -> void:
 	if current_state == State.DEAD:

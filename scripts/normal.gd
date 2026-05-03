@@ -7,6 +7,9 @@ var player: Node2D = null
 
 var hp := 100.0
 
+var xp_reward: float = 10.0
+var damage_amount: float = 10.0
+
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 func _ready() -> void:
@@ -14,6 +17,7 @@ func _ready() -> void:
 	speed = randf_range(speed * 0.8, speed * 1.2)
 	player = get_tree().get_first_node_in_group("player")
 	sprite.animation_finished.connect(_on_animation_finished)
+	sprite.animation_looped.connect(_on_animation_finished)
 
 func _physics_process(_delta: float) -> void:
 	if current_state == State.DEAD:
@@ -41,12 +45,7 @@ func handle_chase() -> void:
 
 func handle_attack() -> void:
 	velocity = Vector2.ZERO
-	if sprite.sprite_frames.has_animation("attack"):
-		sprite.play("attack")
-	elif sprite.sprite_frames.has_animation("attack1"):
-		sprite.play("attack1")
-	elif sprite.sprite_frames.has_animation("attack2"):
-		sprite.play("attack2")
+	sprite.play("attack1")
 	move_and_slide()
 
 func update_animation(dir: Vector2) -> void:
@@ -73,6 +72,10 @@ func take_damage(amount: float) -> void:
 func die() -> void:
 	if current_state == State.DEAD:
 		return
+		
+	if player and player.has_method("gain_xp"):
+		player.gain_xp(xp_reward)
+		
 	current_state = State.DEAD
 
 	if has_node("Hitbox/CollisionShape2D"):
@@ -83,14 +86,17 @@ func die() -> void:
 func _on_animation_finished() -> void:
 	if current_state == State.DEAD:
 		queue_free()
+	elif current_state == State.ATTACK and sprite.animation == "attack1":
+		if player and player.has_method("take_damage"):
+			player.take_damage(damage_amount)
 
-func _on_area_2d_body_entered(body: Node2D) -> void:
+func _on_attack_zone_body_entered(body: Node2D) -> void:
 	if current_state == State.DEAD:
 		return
 	if body.is_in_group("player"):
 		current_state = State.ATTACK
 
-func _on_area_2d_body_exited(body: Node2D) -> void:
+func _on_attack_zone_body_exited(body: Node2D) -> void:
 	if current_state == State.DEAD:
 		return
 	if body.is_in_group("player"):

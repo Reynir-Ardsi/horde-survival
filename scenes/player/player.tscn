@@ -7,6 +7,12 @@
 [ext_resource type="Texture2D" uid="uid://cee5caxdvs1l4" path="res://assets/PostApocalypse_AssetPack_v1.1.2/Character/Main/Run/Character_side_run_no-hands-Sheet6.png" id="5_5gtgg"]
 [ext_resource type="Script" uid="uid://bax3meyvt47wa" path="res://scripts/camera.gd" id="8_qek5x"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_75vfm"]
+bg_color = Color(1, 0, 0, 0.59607846)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0owmy"]
+bg_color = Color(0, 0.8166666, 1, 0.59607846)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_qek5x"]
 atlas = ExtResource("2_75vfm")
 region = Rect2(0, 0, 10, 16)
@@ -205,7 +211,44 @@ height = 78.0
 [node name="Player" type="CharacterBody2D" unique_id=301303664 groups=["player"]]
 scale = Vector2(0.2, 0.2)
 script = ExtResource("1_8afob")
-metadata/_edit_group_ = true
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1774218510]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD" unique_id=171009742]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 320.0
+offset_bottom = 120.0
+
+[node name="HPBar" type="ProgressBar" parent="HUD/VBoxContainer" unique_id=203068703]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_75vfm")
+value = 100.0
+
+[node name="XPBar" type="ProgressBar" parent="HUD" unique_id=1088245195]
+custom_minimum_size = Vector2(300, 30)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -320.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 50.0
+grow_horizontal = 0
+theme_override_styles/fill = SubResource("StyleBoxFlat_0owmy")
+show_percentage = false
+
+[node name="LevelLabel" type="Label" parent="HUD/XPBar" unique_id=2056837001]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Level: 1"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="WeaponSocket" type="Marker2D" parent="." unique_id=805051225]
 position = Vector2(0, 15)
@@ -221,5 +264,12 @@ autoplay = "idle-left"
 shape = SubResource("CapsuleShape2D_0owmy")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=272258137]
+zoom = Vector2(3, 3)
+script = ExtResource("8_qek5x")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=950705190]
+shape = SubResource("CapsuleShape2D_0owmy")
+
+[node name="Camera2D2" type="Camera2D" parent="." unique_id=1929087707]
 zoom = Vector2(3, 3)
 script = ExtResource("8_qek5x")

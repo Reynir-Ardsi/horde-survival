@@ -21,6 +21,7 @@ extends Node2D
 var owner_actor
 var can_fire := true
 var is_reloading: bool = false
+var reload_timer: float = 0.0
 
 @onready var muzzle: Marker2D = $Muzzle
 @onready var sprite: Sprite2D = $Sprite2D
@@ -57,11 +58,12 @@ func fire():
 		if burst_count > 1 and b < burst_count - 1:
 			await get_tree().create_timer(burst_delay).timeout
 
-	await get_tree().create_timer(fire_rate).timeout
-	can_fire = true
-	
 	if current_ammo <= 0:
+		can_fire = true
 		reload()
+	else:
+		await get_tree().create_timer(fire_rate).timeout
+		can_fire = true
 
 func spawn_bullet(dmg: float = 0.0):
 	if bullet_scene == null:
@@ -82,12 +84,23 @@ func spawn_bullet(dmg: float = 0.0):
 	if bullet.has_method("initialize"):
 		bullet.initialize(dir, dmg, penetration, crit_rate, crit_damage, bullet_speed)
 
+func _process(delta):
+	if is_reloading:
+		reload_timer -= delta
+		if owner_actor and owner_actor.has_method("update_reload_bar"):
+			owner_actor.update_reload_bar(1.0 - (reload_timer / reload_speed))
+			
+		if reload_timer <= 0:
+			current_ammo = magazine_size
+			is_reloading = false
+			if owner_actor and owner_actor.has_method("hide_reload_bar"):
+				owner_actor.hide_reload_bar()
+
 func reload():
 	if is_reloading or current_ammo == magazine_size:
 		return
 	
 	is_reloading = true
-	await get_tree().create_timer(reload_speed).timeout
-	
-	current_ammo = magazine_size
-	is_reloading = false
+	reload_timer = reload_speed
+	if owner_actor and owner_actor.has_method("show_reload_bar"):
+		owner_actor.show_reload_bar()

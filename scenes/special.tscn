@@ -214,7 +214,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack1",
-"speed": 8.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -373,7 +373,9 @@ script = ExtResource("1_special")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2141158302]
 position = Vector2(-2, 0)
 sprite_frames = SubResource("SpriteFrames_np67r")
-animation = &"die1"
+animation = &"attack1"
+frame = 6
+frame_progress = 1.0
 
 [node name="AttackZone" type="Area2D" parent="." unique_id=1598886106]
 
