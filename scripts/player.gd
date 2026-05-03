@@ -19,14 +19,94 @@ extends CharacterBody2D
 @onready var sprite: AnimatedSprite2D = $Body
 @onready var weapon_socket: Marker2D = $WeaponSocket
 
+@export var max_hp: float = 100.0
+var current_hp: float = 100.0
+
+var level: int = 1
+var current_xp: float = 0.0
+var max_xp: float = 100.0
+
+@onready var hp_bar: ProgressBar = $HUD/VBoxContainer/HPBar
+@onready var xp_bar: ProgressBar = $HUD/XPBar
+@onready var level_label: Label = $HUD/XPBar/LevelLabel
+
 var current_weapon: Node2D
 var input_dir = Vector2.ZERO
 # Track the last direction the player moved (defaulting to right)
 var last_direction = "right"
 
+var reload_bar: ProgressBar
+
 func _ready():
 	add_to_group("player")
-	equip_weapon(ar2)
+	current_hp = max_hp
+	equip_weapon(shtgn2)
+	
+	reload_bar = ProgressBar.new()
+	reload_bar.show_percentage = false
+	reload_bar.custom_minimum_size = Vector2(100, 15)
+	reload_bar.size = Vector2(100, 15)
+	reload_bar.position = Vector2(-50, -60)
+	reload_bar.visible = false
+	reload_bar.modulate = Color(1.0, 0.8, 0.2) # Yellow/Orange
+	add_child(reload_bar)
+	
+	update_ui()
+
+func show_reload_bar():
+	if reload_bar:
+		reload_bar.visible = true
+		reload_bar.value = 0
+
+func hide_reload_bar():
+	if reload_bar:
+		reload_bar.visible = false
+
+func update_reload_bar(progress: float):
+	if reload_bar:
+		reload_bar.value = progress * 100
+
+func update_ui():
+	if hp_bar:
+		hp_bar.max_value = max_hp
+		hp_bar.value = current_hp
+	if xp_bar:
+		xp_bar.max_value = max_xp
+		xp_bar.value = current_xp
+	if level_label:
+		level_label.text = "Level: " + str(level)
+
+func take_damage(amount: float):
+	current_hp -= amount
+	update_ui()
+	if current_hp <= 0:
+		die()
+
+func die():
+	get_tree().reload_current_scene()
+
+func gain_xp(amount: float):
+	current_xp += amount
+	if current_xp >= max_xp:
+		level_up()
+	update_ui()
+
+func level_up():
+	level += 1
+	current_xp -= max_xp
+	max_xp *= 1.5
+	
+	# Handle multiple level-ups at once if gained a ton of XP
+	if current_xp >= max_xp:
+		level_up()
+
+func _process(delta):
+	if current_hp < max_hp:
+		# 5% of max_hp per minute (divided by 60 seconds)
+		current_hp += (max_hp * 0.05) * (delta / 60.0)
+		if current_hp > max_hp:
+			current_hp = max_hp
+		update_ui()
 
 func _physics_process(delta):
 	handle_movement()

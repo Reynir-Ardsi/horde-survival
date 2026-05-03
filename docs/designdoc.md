@@ -25,4 +25,3 @@ This project utilizes several fantastic free asset packs:
 - **Ranitayas Guns Pack (16+ pixelart guns)**
 - **The Ultimate Weapons Pack**
 - **Tiny Swords (Free Pack)**
-https://www.ffonts.net/Apocalypse.font.downloads
