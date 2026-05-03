@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://br0x4gt0ejie8"]
+
+[ext_resource type="Script" uid="uid://lqt5cexyso56" path="res://scripts/title_screen.gd" id="1_script"]
+[ext_resource type="FontFile" uid="uid://chedjt8kxwtb4" path="res://assets/font/Apocalypse.ttf" id="1_v6p8y"]
+
+[node name="TitleScreen" type="Control" unique_id=2024786023]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="bgTitle" type="Label" parent="." unique_id=547138484]
+layout_mode = 0
+offset_left = 383.0
+offset_top = 94.0
+offset_right = 800.0
+offset_bottom = 303.0
+theme_override_fonts/font = ExtResource("1_v6p8y")
+theme_override_font_sizes/font_size = 200
+text = "Horde"
+
+[node name="H" type="Label" parent="." unique_id=1761132945]
+layout_mode = 0
+offset_left = 392.0
+offset_top = 100.0
+offset_right = 476.0
+offset_bottom = 309.0
+theme_override_colors/font_color = Color(0.79607844, 0.05490196, 0, 1)
+theme_override_fonts/font = ExtResource("1_v6p8y")
+theme_override_font_sizes/font_size = 200
+text = "H"
+
+[node name="O" type="Label" parent="." unique_id=730826082]
+layout_mode = 0
+offset_left = 479.0
+offset_top = 104.0
+offset_right = 554.0
+offset_bottom = 303.0
+theme_override_colors/font_color = Color(0.79607844, 0.05490196, 0, 1)
+theme_override_fonts/font = ExtResource("1_v6p8y")
+theme_override_font_sizes/font_size = 190
+text = "o"
+
+[node name="R" type="Label" parent="." unique_id=1901099556]
+layout_mode = 0
+offset_left = 554.0
+offset_top = 101.0
+offset_right = 628.0
+offset_bottom = 300.0
+theme_override_colors/font_color = Color(0.79607844, 0.05490196, 0, 1)
+theme_override_fonts/font = ExtResource("1_v6p8y")
+theme_override_font_sizes/font_size = 190
+text = "r"
+
+[node name="D" type="Label" parent="." unique_id=1672022852]
+layout_mode = 0
+offset_left = 638.0
+offset_top = 103.0
+offset_right = 731.0
+offset_bottom = 302.0
+theme_override_colors/font_color = Color(0.79607844, 0.05490196, 0, 1)
+theme_override_fonts/font = ExtResource("1_v6p8y")
+theme_override_font_sizes/font_size = 190
+text = "d"
+
+[node name="E" type="Label" parent="." unique_id=1365073731]
+layout_mode = 0
+offset_left = 721.0
+offset_top = 104.0
+offset_right = 804.0
+offset_bottom = 313.0
+theme_override_colors/font_color = Color(0.79607844, 0.05490196, 0, 1)
+theme_override_fonts/font = ExtResource("1_v6p8y")
+theme_override_font_sizes/font_size = 190
+text = "e"
+
+[node name="Button" type="Button" parent="." unique_id=1760593028]
+layout_mode = 0
+offset_left = 488.0
+offset_top = 386.0
+offset_right = 670.0
+offset_bottom = 463.0
+theme_override_font_sizes/font_size = 50
+text = "Play"
