@@ -40,7 +40,7 @@ var reload_bar: ProgressBar
 func _ready():
 	add_to_group("player")
 	current_hp = max_hp
-	equip_weapon(shtgn2)
+	equip_weapon(lmg1)
 	
 	reload_bar = ProgressBar.new()
 	reload_bar.show_percentage = false
@@ -83,7 +83,8 @@ func take_damage(amount: float):
 		die()
 
 func die():
-	get_tree().reload_current_scene()
+	if get_parent().has_method("game_over"):
+		get_parent().game_over()
 
 func gain_xp(amount: float):
 	current_xp += amount
@@ -188,3 +189,21 @@ func update_sprite(dir):
 			sprite.play("idle-right")
 		else:
 			sprite.play("idle-left")
+
+func hide_hud():
+	if has_node("HUD"):
+		$HUD.visible = false
+
+func show_hud():
+	if has_node("HUD"):
+		$HUD.visible = true
+
+func reset():
+	current_hp = max_hp
+	level = 1
+	current_xp = 0.0
+	max_xp = 100.0
+	global_position = Vector2(504, 227) # Default starting position
+	last_direction = "right"
+	equip_weapon(shtgn2) # Or whichever default weapon
+	update_ui()

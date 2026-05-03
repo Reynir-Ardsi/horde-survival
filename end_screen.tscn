@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://4t8h5x1t3jp"]
+
+[ext_resource type="FontFile" uid="uid://chedjt8kxwtb4" path="res://assets/font/Apocalypse.ttf" id="1_my301"]
+
+[node name="EndScreen" type="Control" unique_id=1736098869]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Restart" type="Button" parent="." unique_id=1703183081]
+layout_mode = 0
+offset_left = 442.0
+offset_top = 444.0
+offset_right = 667.0
+offset_bottom = 529.0
+theme_override_font_sizes/font_size = 50
+text = "Restart
+"
+
+[node name="High Score" type="Label" parent="." unique_id=217300559]
+layout_mode = 0
+offset_left = 320.0
+offset_top = 334.0
+offset_right = 815.0
+offset_bottom = 403.0
+theme_override_font_sizes/font_size = 50
+text = "Time Survived: 00:00"
+
+[node name="Dead" type="Label" parent="." unique_id=1367409475]
+layout_mode = 0
+offset_left = 116.0
+offset_top = 109.0
+offset_right = 1023.0
+offset_bottom = 318.0
+theme_override_fonts/font = ExtResource("1_my301")
+theme_override_font_sizes/font_size = 200
+text = "You Are Dead"
