@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://c8jsa57gcgthj"]
+
+[ext_resource type="Script" uid="uid://p0h8hjeipail" path="res://scripts/upgrade_screen.gd" id="1_mh8j6"]
+
+[node name="UpgradeScreen" type="Control" unique_id=1952914751]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mh8j6")
+
+[node name="Button" type="Button" parent="." unique_id=1007983760]
+layout_mode = 0
+offset_left = 377.0
+offset_top = 362.0
+offset_right = 815.0
+offset_bottom = 484.0
+text = "Upgrade"
+
+[node name="Button4" type="Button" parent="." unique_id=1685852561]
+layout_mode = 0
+offset_left = 478.0
+offset_top = 517.0
+offset_right = 715.0
+offset_bottom = 575.0
+text = "Reroll"
+
+[node name="Button2" type="Button" parent="." unique_id=1327602473]
+layout_mode = 0
+offset_left = 376.0
+offset_top = 209.0
+offset_right = 814.0
+offset_bottom = 331.0
+text = "Upgrade"
+
+[node name="Button3" type="Button" parent="." unique_id=1293058761]
+layout_mode = 0
+offset_left = 375.0
+offset_top = 64.0
+offset_right = 813.0
+offset_bottom = 186.0
+text = "Upgrade"
