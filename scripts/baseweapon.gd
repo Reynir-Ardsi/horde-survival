@@ -23,11 +23,30 @@ var can_fire := true
 var is_reloading: bool = false
 var reload_timer: float = 0.0
 
+@onready var base_fire_rate := fire_rate
+@onready var base_damage := damage
+@onready var base_reload_speed := reload_speed
+@onready var base_spread := spread
+
 @onready var muzzle: Marker2D = $Muzzle
 @onready var sprite: Sprite2D = $Sprite2D
 
 func initialize(owner):
 	owner_actor = owner
+	if owner_actor:
+		apply_modifiers(owner_actor)
+
+func apply_modifiers(pl):
+	damage = base_damage * (1.0 + pl.damage_mod)
+	
+	# Reductions: Clamp to minimum 20% of base value (prevent zero/negative)
+	fire_rate = max(base_fire_rate * (1.0 + pl.fire_rate_mod), base_fire_rate * 0.2)
+	reload_speed = max(base_reload_speed * (1.0 + pl.reload_speed_mod), base_reload_speed * 0.2)
+	spread = max(base_spread * (1.0 + pl.spread_mod), 0.0)
+	
+	# Absolute floors for sanity
+	if fire_rate < 0.02: fire_rate = 0.02
+	if reload_speed < 0.2: reload_speed = 0.2
 
 func aim(target_pos: Vector2):
 	var aim_dir = (target_pos - global_position).normalized()
@@ -56,6 +75,8 @@ func fire():
 			spawn_bullet(damage)
 			
 		if burst_count > 1 and b < burst_count - 1:
+			# Use a timer that respects pause if we want it to stop, 
+			# but here we use the default which is pausable.
 			await get_tree().create_timer(burst_delay).timeout
 
 	if current_ammo <= 0:

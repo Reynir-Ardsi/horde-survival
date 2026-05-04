@@ -13,6 +13,7 @@ var damage_amount: float = 10.0
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_PAUSABLE
 	add_to_group("enemies")
 	speed = randf_range(speed * 0.8, speed * 1.2)
 	player = get_tree().get_first_node_in_group("player")

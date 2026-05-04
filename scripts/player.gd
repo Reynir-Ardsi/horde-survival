@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal leveled_up(new_level: int)
+
 @export var speed := 80
 @export var acceleration := 1200
 @export var friction := 800
@@ -22,13 +24,23 @@ extends CharacterBody2D
 @export var max_hp: float = 100.0
 var current_hp: float = 100.0
 
-var level: int = 1
+@export var xp_multiplier: float = 1.0
+@export var regen_rate: float = 0.05
+
+var level: int = 0
 var current_xp: float = 0.0
 var max_xp: float = 100.0
 
 @onready var hp_bar: ProgressBar = $HUD/VBoxContainer/HPBar
 @onready var xp_bar: ProgressBar = $HUD/XPBar
 @onready var level_label: Label = $HUD/XPBar/LevelLabel
+
+# Percentage modifiers (0.1 = +10%)
+var speed_mod: float = 0.0
+var damage_mod: float = 0.0
+var fire_rate_mod: float = 0.0 # Negative is faster
+var reload_speed_mod: float = 0.0 # Negative is faster
+var spread_mod: float = 0.0 # Negative is less spread
 
 var current_weapon: Node2D
 var input_dir = Vector2.ZERO
@@ -40,7 +52,7 @@ var reload_bar: ProgressBar
 func _ready():
 	add_to_group("player")
 	current_hp = max_hp
-	equip_weapon(lmg1)
+	equip_weapon(pstl)
 	
 	reload_bar = ProgressBar.new()
 	reload_bar.show_percentage = false
@@ -87,7 +99,7 @@ func die():
 		get_parent().game_over()
 
 func gain_xp(amount: float):
-	current_xp += amount
+	current_xp += amount * xp_multiplier
 	if current_xp >= max_xp:
 		level_up()
 	update_ui()
@@ -96,6 +108,8 @@ func level_up():
 	level += 1
 	current_xp -= max_xp
 	max_xp *= 1.5
+	
+	leveled_up.emit(level)
 	
 	# Handle multiple level-ups at once if gained a ton of XP
 	if current_xp >= max_xp:
@@ -142,7 +156,7 @@ func handle_movement():
 	else:
 		last_direction = "left"
 
-	velocity = input_dir * speed
+	velocity = input_dir * (speed * (1.0 + speed_mod))
 	move_and_slide()
 
 	update_sprite(input_dir)
@@ -200,10 +214,21 @@ func show_hud():
 
 func reset():
 	current_hp = max_hp
-	level = 1
+	level = 0
 	current_xp = 0.0
 	max_xp = 100.0
+	xp_multiplier = 1.0
+	regen_rate = 0.05
+	speed = 80
+	
+	# Reset modifiers
+	speed_mod = 0.0
+	damage_mod = 0.0
+	fire_rate_mod = 0.0
+	reload_speed_mod = 0.0
+	spread_mod = 0.0
+	
 	global_position = Vector2(504, 227) # Default starting position
 	last_direction = "right"
-	equip_weapon(shtgn2) # Or whichever default weapon
+	equip_weapon(pstl) # Reset to pistol
 	update_ui()

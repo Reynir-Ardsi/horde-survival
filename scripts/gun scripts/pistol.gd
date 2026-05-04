@@ -1,11 +1,11 @@
 extends BaseWeapon
 
-func _init():
-	fire_rate = 0.3
+func _ready():
+	fire_rate = 0.001
 	damage = 15.0
 	magazine_size = 12
 	current_ammo = 12
-	reload_speed = 1.0
+	reload_speed = 0.4
 	bullet_speed = 500.0
 	penetration = 0
 	spread = 0.05
