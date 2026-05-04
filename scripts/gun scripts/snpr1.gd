@@ -1,6 +1,6 @@
 extends BaseWeapon
 
-func _ready():
+func setup_stats():
 	fire_rate = 1.5
 	damage = 80.0
 	magazine_size = 5

@@ -23,18 +23,28 @@ var can_fire := true
 var is_reloading: bool = false
 var reload_timer: float = 0.0
 
-@onready var base_fire_rate := fire_rate
-@onready var base_damage := damage
-@onready var base_reload_speed := reload_speed
-@onready var base_spread := spread
+var base_fire_rate: float
+var base_damage: float
+var base_reload_speed: float
+var base_spread: float
 
 @onready var muzzle: Marker2D = $Muzzle
 @onready var sprite: Sprite2D = $Sprite2D
 
 func initialize(owner):
 	owner_actor = owner
+	setup_stats()
+	
+	base_fire_rate = fire_rate
+	base_damage = damage
+	base_reload_speed = reload_speed
+	base_spread = spread
+	
 	if owner_actor:
 		apply_modifiers(owner_actor)
+
+func setup_stats():
+	pass # Overridden by specific weapon scripts
 
 func apply_modifiers(pl):
 	damage = base_damage * (1.0 + pl.damage_mod)
