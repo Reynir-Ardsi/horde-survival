@@ -74,6 +74,12 @@ func take_damage(amount: float) -> void:
 	if current_state == State.DEAD:
 		return
 	hp -= amount
+	
+	# Hit Flash Effect
+	var tween = create_tween()
+	sprite.modulate = Color(1, 0, 0) # Turn red
+	tween.tween_property(sprite, "modulate", Color(1, 1, 1), 0.1) # Fade back to white in 0.1s
+	
 	if hp <= 0:
 		die()
 
@@ -95,6 +101,12 @@ func _on_animation_finished() -> void:
 	if current_state == State.DEAD:
 		queue_free()
 
+func _on_attack_zone_body_exited(body: Node2D) -> void:
+	if current_state == State.DEAD:
+		return
+	if body.is_in_group("player"):
+		current_state = State.CHASE
+
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	if current_state == State.DEAD:
 		return
@@ -105,15 +117,4 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 		else:
 			area.queue_free()
 
-func _on_attack_zone_body_entered(body: Node2D) -> void:
-	if current_state == State.DEAD:
-		return
-	if body.is_in_group("player"):
-		current_state = State.ATTACK
 		attack_timer = 0.0 # Attack immediately upon entering range
-
-func _on_attack_zone_body_exited(body: Node2D) -> void:
-	if current_state == State.DEAD:
-		return
-	if body.is_in_group("player"):
-		current_state = State.CHASE

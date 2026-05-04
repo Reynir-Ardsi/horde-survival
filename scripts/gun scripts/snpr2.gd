@@ -6,7 +6,7 @@ func setup_stats():
 	magazine_size = 3
 	current_ammo = 3
 	reload_speed = 3.0
-	bullet_speed = 1500.0
+	bullet_speed = 1000.0
 	penetration = 6
 	spread = 0.0
 	projectiles = 1

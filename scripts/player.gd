@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 signal leveled_up(new_level: int)
 
-@export var speed := 70
+@export var speed := 60
 @export var acceleration := 1200
 @export var friction := 800
 
@@ -48,6 +48,8 @@ var input_dir = Vector2.ZERO
 var last_direction = "right"
 
 var reload_bar: ProgressBar
+
+var is_active := false
 
 func _ready():
 	add_to_group("player")
@@ -129,7 +131,7 @@ func _physics_process(delta):
 	handle_shooting()
 
 func handle_shooting():
-	if current_weapon == null:
+	if current_weapon == null or not is_active:
 		return
 		
 	var is_auto = false
@@ -161,7 +163,6 @@ func handle_movement():
 
 	update_sprite(input_dir)
 
-
 func handle_aim():
 	if current_weapon == null:
 		return
@@ -174,7 +175,7 @@ func handle_aim():
 
 func _input(event):
 	if event.is_action_pressed("shoot"):
-		if current_weapon:
+		if current_weapon and is_active:
 			current_weapon.fire()
 
 

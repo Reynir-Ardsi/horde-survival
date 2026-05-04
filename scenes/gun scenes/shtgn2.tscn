@@ -13,5 +13,6 @@ position = Vector2(8, -1.5)
 texture = ExtResource("2_y81ue")
 
 [node name="Muzzle" type="Marker2D" parent="." unique_id=46788796]
+z_index = 10
 position = Vector2(29.5, -2.5)
 gizmo_extents = 0.0

@@ -67,6 +67,12 @@ func take_damage(amount: float) -> void:
 	if current_state == State.DEAD:
 		return
 	hp -= amount
+	
+	# Hit Flash Effect
+	var tween = create_tween()
+	sprite.modulate = Color(1, 0, 0) # Turn red
+	tween.tween_property(sprite, "modulate", Color(1, 1, 1), 0.1) # Fade back to white in 0.1s
+	
 	if hp <= 0:
 		die()
 

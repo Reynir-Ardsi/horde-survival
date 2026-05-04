@@ -24,8 +24,11 @@ var upgrade_screen_instance: Control
 @export var TitleScreenScene: PackedScene = preload("res://scenes/title_screen.tscn")
 @export var EndScreenScene: PackedScene = preload("res://scenes/end_screen.tscn")
 @export var UpgradeScreenScene: PackedScene = preload("res://scenes/upgrade_screen.tscn")
+@export var StatsWindowScene: PackedScene = preload("res://scenes/ui/stats_window.tscn")
 
 @onready var spawn_timer: Timer = Timer.new()
+
+var stats_window_instance: Control
 
 func _ready() -> void:
 	# Setup Spawn Timer
@@ -64,6 +67,13 @@ func _ready() -> void:
 	upgrade_canvas.add_child(upgrade_screen_instance)
 	add_child(upgrade_canvas)
 	
+	# Stats Window setup
+	stats_window_instance = StatsWindowScene.instantiate()
+	var stats_canvas = CanvasLayer.new()
+	stats_canvas.layer = 120
+	stats_canvas.add_child(stats_window_instance)
+	add_child(stats_canvas)
+	
 	# Connect to player level up
 	player.leveled_up.connect(_on_player_leveled_up)
 	
@@ -83,6 +93,23 @@ func _ready() -> void:
 	
 	# Initial State
 	enter_title_screen()
+
+func _input(event):
+	if event.is_action_pressed("toggle_stats"):
+		toggle_stats_window()
+
+func toggle_stats_window():
+	stats_window_instance.visible = !stats_window_instance.visible
+	
+	if stats_window_instance.visible:
+		get_tree().paused = true
+		stats_window_instance.update_stats(player)
+	else:
+		# Only unpause if the upgrade screen is also not visible
+		if not upgrade_screen_instance.visible:
+			get_tree().paused = false
+	
+	spawn_timer.paused = stats_window_instance.visible
 
 func _on_spawn_timer_timeout() -> void:
 	if current_state != State.PLAYING: return
@@ -147,6 +174,7 @@ func start_game():
 	
 	player.show_hud()
 	player.visible = true
+	player.is_active = true
 	player.set_physics_process(true)
 	timer_label.visible = true
 	spawn_timer.start()
@@ -190,7 +218,7 @@ func _on_upgrade_selected():
 	current_state = State.PLAYING
 
 func _process(delta):
-	if current_state == State.PLAYING:
+	if current_state == State.PLAYING and not get_tree().paused:
 		survival_time += delta
 		timer_label.text = get_formatted_time()
 		

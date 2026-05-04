@@ -27,6 +27,8 @@ var base_fire_rate: float
 var base_damage: float
 var base_reload_speed: float
 var base_spread: float
+var base_crit_rate: float
+var base_crit_damage: float
 
 @onready var muzzle: Marker2D = $Muzzle
 @onready var sprite: Sprite2D = $Sprite2D
@@ -39,6 +41,8 @@ func initialize(owner):
 	base_damage = damage
 	base_reload_speed = reload_speed
 	base_spread = spread
+	base_crit_rate = crit_rate
+	base_crit_damage = crit_damage
 	
 	if owner_actor:
 		apply_modifiers(owner_actor)
@@ -47,15 +51,28 @@ func setup_stats():
 	pass # Overridden by specific weapon scripts
 
 func apply_modifiers(pl):
+	# Base calculation
 	damage = base_damage * (1.0 + pl.damage_mod)
-	
-	# Reductions: Clamp to minimum 20% of base value (prevent zero/negative)
 	fire_rate = max(base_fire_rate * (1.0 + pl.fire_rate_mod), base_fire_rate * 0.2)
 	reload_speed = max(base_reload_speed * (1.0 + pl.reload_speed_mod), base_reload_speed * 0.2)
-	spread = max(base_spread * (1.0 + pl.spread_mod), 0.0)
+	
+	# Spread Calculation: Fix 0-spread bug by adding a flat penalty if spread_mod is positive
+	var spread_penalty = 0.0
+	if pl.spread_mod > 0:
+		spread_penalty = pl.spread_mod * 0.1
+	spread = max(base_spread * (1.0 + pl.spread_mod) + spread_penalty, 0.0)
+	
+	# Projectile Penalty: -15% damage for each projectile beyond the first
+	if projectiles > 1:
+		var penalty = 1.0 - ((projectiles - 1) * 0.15)
+		damage *= max(penalty, 0.3) # Clamp to 30% minimum damage
+	
+	# Burst Penalty: +0.1s fire rate delay for each burst round beyond the first
+	if burst_count > 1:
+		fire_rate += (burst_count - 1) * 0.1
 	
 	# Absolute floors for sanity
-	if fire_rate < 0.02: fire_rate = 0.02
+	if fire_rate < 0.005: fire_rate = 0.005
 	if reload_speed < 0.2: reload_speed = 0.2
 
 func aim(target_pos: Vector2):

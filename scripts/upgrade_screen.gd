@@ -21,17 +21,17 @@ var player_upgrades = [
 ]
 
 var gun_upgrades = [
-	{"text": "+15% Damage", "type": "gun", "stat": "damage_mod", "val": 0.15},
+	{"text": "Heavy Round (+15% Dmg, +1 Pen)", "type": "gun", "stat": "heavy_round", "val": 0.15},
 	{"text": "+5% Fire Rate", "type": "gun", "stat": "fire_rate_mod", "val": -0.05},
-	{"text": "+3 Mag Size", "type": "gun", "stat": "magazine_size", "val": 3},
+	{"text": "+5 Mag Size", "type": "gun", "stat": "magazine_size", "val": 3},
 	{"text": "-10% Reload Speed", "type": "gun", "stat": "reload_speed_mod", "val": -0.10},
-	{"text": "+1 Penetration", "type": "gun", "stat": "penetration", "val": 1},
 	{"text": "-15% Spread", "type": "gun", "stat": "spread_mod", "val": -0.15},
 	{"text": "+3% Crit Rate", "type": "gun", "stat": "crit_rate", "val": 0.03},
 	{"text": "+20% Crit Damage", "type": "gun", "stat": "crit_damage", "val": 0.20},
-	{"text": "+1 Projectile (+Spread)", "type": "gun", "stat": "projectiles", "val": 1},
-	{"text": "+1 Burst Count", "type": "gun", "stat": "burst_count", "val": 1}
+	{"text": "+1 Projectile (-15% Dmg, +5% Spread)", "type": "gun", "stat": "projectiles", "val": 1},
+	{"text": "+1 Burst Count (+0.1s Delay)", "type": "gun", "stat": "burst_count", "val": 1}
 ]
+
 
 var weapons = []
 var can_click := false
@@ -68,8 +68,8 @@ func open_screen(pl, lvl):
 	generate_choices()
 	show()
 	
-	# Wait 2 seconds before allowing clicks to prevent misclicks
-	get_tree().create_timer(2.0, true).timeout.connect(_on_timeout_finished)
+	# Wait 1 second before allowing clicks to prevent misclicks
+	get_tree().create_timer(1.0, true).timeout.connect(_on_timeout_finished)
 
 func _on_timeout_finished():
 	can_click = true
@@ -129,7 +129,12 @@ func _on_choice_selected(index: int):
 		var wep = player.current_weapon
 		
 		# Handle global player mods
-		if choice.stat in ["damage_mod", "fire_rate_mod", "reload_speed_mod", "spread_mod"]:
+		if choice.stat == "heavy_round":
+			player.set("damage_mod", player.get("damage_mod") + choice.val)
+			wep.set("penetration", wep.get("penetration") + 1)
+			if wep.has_method("apply_modifiers"):
+				wep.apply_modifiers(player)
+		elif choice.stat in ["damage_mod", "fire_rate_mod", "reload_speed_mod", "spread_mod"]:
 			player.set(choice.stat, player.get(choice.stat) + choice.val)
 			if wep.has_method("apply_modifiers"):
 				wep.apply_modifiers(player)
@@ -144,7 +149,7 @@ func _on_choice_selected(index: int):
 				wep.burst_count = 3
 			else:
 				wep.burst_count += 1
-		else:
+		elif choice.stat not in ["projectiles", "burst_count"]:
 			wep.set(choice.stat, wep.get(choice.stat) + choice.val)
 			
 	elif choice.type == "weapon":

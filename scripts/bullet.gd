@@ -24,10 +24,9 @@ func initialize(dir: Vector2, dmg: float = 0.0, pen: int = 1, c_rate: float = 0.
 		damage = dmg * c_dmg
 	else:
 		damage = dmg
-
 func _process(delta):
 	position += direction * speed * delta
-	
+
 	if player:
 		if global_position.distance_to(player.global_position) > max_range:
 			queue_free()
@@ -37,7 +36,8 @@ func _process(delta):
 		if not player:
 			queue_free() # Or just let it fly? Let's delete to be safe.
 
+
 func handle_hit():
 	penetrations_left -= 1
-	if penetrations_left <= 0:
+	if penetrations_left < 0:
 		queue_free()
