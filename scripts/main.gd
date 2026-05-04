@@ -83,6 +83,7 @@ func _ready() -> void:
 	music_player = AudioStreamPlayer.new()
 	music_player.stream = load("res://assets/audio/home_screen.mp3")
 	music_player.volume_db = 0.0
+	music_player.loop = true
 	add_child(music_player)
 	print("Music player created, stream: ", music_player.stream)
 
