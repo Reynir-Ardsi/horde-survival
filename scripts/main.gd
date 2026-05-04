@@ -6,6 +6,8 @@ extends Node2D
 
 @export var max_enemies: int = 200
 
+var music_player: AudioStreamPlayer
+
 @onready var player: CharacterBody2D = $Player
 
 enum State { TITLE, PLAYING, GAMEOVER, UPGRADE }
@@ -76,7 +78,14 @@ func _ready() -> void:
 	
 	# Connect to player level up
 	player.leveled_up.connect(_on_player_leveled_up)
-	
+
+	# Setup music player
+	music_player = AudioStreamPlayer.new()
+	music_player.stream = load("res://assets/audio/home_screen.mp3")
+	music_player.volume_db = 0.0
+	add_child(music_player)
+	print("Music player created, stream: ", music_player.stream)
+
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	player.process_mode = Node.PROCESS_MODE_PAUSABLE
 	
@@ -171,7 +180,11 @@ func start_game():
 	survival_time = 0.0
 	title_screen_instance.visible = false
 	end_screen_instance.visible = false
-	
+
+	if music_player:
+		music_player.play()
+		print("Music started playing")
+
 	player.show_hud()
 	player.visible = true
 	player.is_active = true

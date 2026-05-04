@@ -23,6 +23,8 @@ var can_fire := true
 var is_reloading: bool = false
 var reload_timer: float = 0.0
 
+var shoot_sound: AudioStreamPlayer
+
 var base_fire_rate: float
 var base_damage: float
 var base_reload_speed: float
@@ -36,6 +38,11 @@ var base_crit_damage: float
 func initialize(owner):
 	owner_actor = owner
 	setup_stats()
+
+	shoot_sound = AudioStreamPlayer.new()
+	shoot_sound.stream = load("res://assets/audio/gun_shoot.mp3")
+	shoot_sound.volume_db = -5.0
+	add_child(shoot_sound)
 	
 	base_fire_rate = fire_rate
 	base_damage = damage
@@ -96,6 +103,10 @@ func fire():
 
 	can_fire = false
 	current_ammo -= 1
+
+	if shoot_sound:
+		shoot_sound.play()
+		shoot_sound.seek(0.40)
 
 	for b in range(burst_count):
 		for p in range(projectiles):
