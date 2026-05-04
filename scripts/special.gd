@@ -5,9 +5,9 @@ var speed := 45.0
 var current_state = State.CHASE
 var player: Node2D = null
 
-var hp := 75.0
+var hp := 70.0
 
-var xp_reward: float = 15.0
+var xp_reward: float = 10.0
 var damage_amount: float = 5.0
 var attack_cooldown: float = 0.8
 var attack_timer: float = 0.0

@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 signal leveled_up(new_level: int)
 
-@export var speed := 80
+@export var speed := 50
 @export var acceleration := 1200
 @export var friction := 800
 

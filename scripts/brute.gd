@@ -1,13 +1,13 @@
 extends CharacterBody2D
 
 enum State { CHASE, ATTACK, DEAD }
-var speed := 20.0
+var speed := 40.0
 var current_state = State.CHASE
 var player: Node2D = null
 
-var hp := 200.0
+var hp := 250.0
 
-var xp_reward: float = 25.0
+var xp_reward: float = 40.0
 var damage_amount: float = 30.0
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D

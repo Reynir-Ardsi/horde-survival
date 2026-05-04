@@ -14,21 +14,21 @@ var choices = []
 
 # Dictionaries holding our upgrades
 var player_upgrades = [
-	{"text": "+20 Max HP", "type": "player", "stat": "max_hp", "val": 20.0},
+	{"text": "+30 Max HP", "type": "player", "stat": "max_hp", "val": 30.0},
 	{"text": "+10% Speed", "type": "player", "stat": "speed_mod", "val": 0.1},
-	{"text": "+20% XP Gain", "type": "player", "stat": "xp_multiplier", "val": 0.2},
+	{"text": "+30% XP Gain", "type": "player", "stat": "xp_multiplier", "val": 0.3},
 	{"text": "+2% Health Regen", "type": "player", "stat": "regen_rate", "val": 0.02}
 ]
 
 var gun_upgrades = [
 	{"text": "+15% Damage", "type": "gun", "stat": "damage_mod", "val": 0.15},
-	{"text": "-10% Fire Rate", "type": "gun", "stat": "fire_rate_mod", "val": -0.1},
-	{"text": "+5 Mag Size", "type": "gun", "stat": "magazine_size", "val": 5},
-	{"text": "-15% Reload Speed", "type": "gun", "stat": "reload_speed_mod", "val": -0.15},
+	{"text": "+5% Fire Rate", "type": "gun", "stat": "fire_rate_mod", "val": -0.05},
+	{"text": "+3 Mag Size", "type": "gun", "stat": "magazine_size", "val": 3},
+	{"text": "-10% Reload Speed", "type": "gun", "stat": "reload_speed_mod", "val": -0.10},
 	{"text": "+1 Penetration", "type": "gun", "stat": "penetration", "val": 1},
 	{"text": "-15% Spread", "type": "gun", "stat": "spread_mod", "val": -0.15},
-	{"text": "+5% Crit Rate", "type": "gun", "stat": "crit_rate", "val": 0.05},
-	{"text": "+50% Crit Damage", "type": "gun", "stat": "crit_damage", "val": 0.5},
+	{"text": "+3% Crit Rate", "type": "gun", "stat": "crit_rate", "val": 0.03},
+	{"text": "+20% Crit Damage", "type": "gun", "stat": "crit_damage", "val": 0.20},
 	{"text": "+1 Projectile (+Spread)", "type": "gun", "stat": "projectiles", "val": 1},
 	{"text": "+1 Burst Count", "type": "gun", "stat": "burst_count", "val": 1}
 ]
