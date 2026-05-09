@@ -3,7 +3,7 @@ extends Area2D
 @export var speed := 600
 var direction := Vector2.ZERO
 var damage := 0.0
-var penetrations_left := 1
+var penetrations_left := 0
 
 var player: Node2D
 var max_range: float = 1200.0

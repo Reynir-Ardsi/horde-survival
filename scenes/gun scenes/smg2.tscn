@@ -5,6 +5,7 @@
 
 [node name="SMG2" type="CharacterBody2D" unique_id=1609019262]
 z_index = 10
+scale = Vector2(4, 4)
 script = ExtResource("1_scayc")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1783549605]
@@ -13,5 +14,5 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_u303u")
 
 [node name="Muzzle" type="Marker2D" parent="." unique_id=1183627334]
-position = Vector2(13, -1)
+position = Vector2(13, -2)
 gizmo_extents = 0.0

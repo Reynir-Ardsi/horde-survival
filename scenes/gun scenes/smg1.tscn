@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cr7l0evilavyi" path="res://assets/Ranitayas Guns Pack (16+ pixelart guns)/Smgs/6smg06.png" id="15_kurua"]
 
 [node name="SMG1" type="CharacterBody2D" unique_id=1609019262]
+scale = Vector2(4, 4)
 script = ExtResource("1_shlw4")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1783549605]

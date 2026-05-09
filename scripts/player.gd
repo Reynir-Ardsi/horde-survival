@@ -54,7 +54,7 @@ var is_active := false
 func _ready():
 	add_to_group("player")
 	current_hp = max_hp
-	equip_weapon(pstl)
+	equip_weapon(snpr2)
 	
 	reload_bar = ProgressBar.new()
 	reload_bar.show_percentage = false
@@ -109,7 +109,7 @@ func gain_xp(amount: float):
 func level_up():
 	level += 1
 	current_xp -= max_xp
-	max_xp *= 1.5
+	max_xp *= 1.2
 	
 	leveled_up.emit(level)
 	

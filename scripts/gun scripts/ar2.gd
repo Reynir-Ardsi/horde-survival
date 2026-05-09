@@ -2,12 +2,12 @@ extends BaseWeapon
 
 func setup_stats():
 	fire_rate = 0.15
-	damage = 25.0
+	damage = 20.0
 	magazine_size = 30
 	current_ammo = 30
 	reload_speed = 1.8
 	bullet_speed = 700.0
-	penetration = 1
+	penetration = 0
 	spread = 0.1
 	projectiles = 1
 	burst_count = 1
